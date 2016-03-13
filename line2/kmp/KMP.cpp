@@ -1,6 +1,27 @@
 #include <iostream>
 #include <string.h>
+#include <stdio.h>
 using namespace std;
+
+void getNext(char *p, int *next)
+{
+	int j, k;
+	next[0] = -1;
+	j = 0;
+	k = -1;
+	while (j<strlen(p) - 1)
+	{
+		if (k == -1 || p[j] == p[k])    //匹配的情况下,p[j]==p[k]
+		{
+			j++;
+			k++;
+			next[j] = k;
+		}
+		else                   //p[j]!=p[k]
+			k = next[k];
+	}
+}
+
 int KMPMatch(char *s, char *p)
 {
 	int next[100];
@@ -24,29 +45,18 @@ int KMPMatch(char *s, char *p)
 	}
 	return -1;
 }
-void getNext(char *p, int *next)
-{
-	int j, k;
-	next[0] = -1;
-	j = 0;
-	k = -1;
-	while (j<strlen(p) - 1)
-	{
-		if (k == -1 || p[j] == p[k])    //匹配的情况下,p[j]==p[k]
-		{
-			j++;
-			k++;
-			next[j] = k;
-		}
-		else                   //p[j]!=p[k]
-			k = next[k];
-	}
-}
+
 int main()
 {
-	char*s = "abcdefg";
-	char*p = "def";
-	cout<<KMPMatch(s,p)<<endl;
+	char*s;
+	char*p;
+	s = (char*)malloc(100);
+	p = (char*)malloc(100);
+	while (1)
+	{
+		cin >> s >> p; 
+		cout << KMPMatch(s, p) << endl;
+	}
 	return 0;
 
 };
