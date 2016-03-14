@@ -187,5 +187,7 @@ int main()
         printf("删除成功\n");
     printSL(sl);
     system("pause");
+    int ii;
+    scanf("%d",&ii);
     return 0;
 }
