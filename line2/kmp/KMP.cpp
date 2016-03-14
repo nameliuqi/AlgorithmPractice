@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+#include <memory.h>
 using namespace std;
 
 void getNext(char *p, int *next)
@@ -54,7 +55,7 @@ int main()
 	p = (char*)malloc(100);
 	while (1)
 	{
-		cin >> s >> p; 
+		cin >> s >> p;
 		cout << KMPMatch(s, p) << endl;
 	}
 	return 0;

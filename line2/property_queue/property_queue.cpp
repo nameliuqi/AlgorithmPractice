@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
 using namespace std;
 
 //小根堆
@@ -112,5 +113,6 @@ int main()
 	cout<<iVal<<endl;
 
 	heap.printQueue();
+	system("pause");
 	return 0;
 }

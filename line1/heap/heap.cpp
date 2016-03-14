@@ -4,6 +4,14 @@
 #define MAX 100
 using namespace std;
 
+void swap(int &a,int &b)
+{
+    int temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+
 class priority
 {
 public:
@@ -46,40 +54,75 @@ int priority::dequeue()
         //supposing all the value is positive
         return -1;
     }
-    num = heap[size--];
-    heap[1] = heap[size+1];
+    num = heap[1];
+    heap[1] = heap[size];
+    size--;
     int par;
     par = 1;
     while (par <= size/2)
     {
-        int chid1,chid2;
-        chid2 = par*2+1;
-        chid1 = par*2;
-        if (heap[par] < heap[chid1]) && (heap[par] < heap[chi2])
+        int chid;
+        chid = par*2;
+        if (chid == size)
+            if (heap[chid]<heap[par])
+                swap(heap[chid],heap[par]);
+            else
+                ;
+        else
+        {
+            chid = heap[chid] < heap[chid+1] ? chid:(chid+1);
+            swap(heap[chid],heap[par]);
+        }
+        par = chid;
     }
+    return num;
 }
 
 int priority::top()
 {
-
+	return heap[1];
 }
 
 int priority::getSize()
 {
-
+	return size;
 }
 
 int priority::empty()
 {
-
+	return size==0;
 }
 
 int priority::print()
 {
-
+	for (int i = 0; i < size; ++i)
+	{
+		cout<<heap[i+1]<<endl;
+	}
 }
 
 int main(int argc, char const *argv[])
 {
+	int n;
+	priority *p = new priority();
+	cout<<"input the number n"<<endl;
+	cin>>n;
+	while (n--)
+	{
+		int temp;
+		cin>>temp;
+		p->enqueue(temp);
+	}
+	cout<<"print the heap:\n";
+	p->print();
+	cout<<"input the number n again"<<endl;
+	cin>>n;
+	while ((n--) && (!p->empty()))
+	{
+		cout<<"out: "<<p->dequeue()<<endl;
+	}
+	cout<<"print the heap again:\n";
+	if (!p->empty())
+		p->print();
     return 0;
 }

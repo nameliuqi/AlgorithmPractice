@@ -1,5 +1,7 @@
 //#include <stdafx.h>
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 struct element{
 	int value;
 	int i, j;
@@ -64,5 +66,6 @@ int main(int argc, char* argv[])
 		printf("(%d  %d  %d)\n", lm->data[index].i, lm->data[index].j, lm->data[index].value);
 		index++;
 	}
+	system("pause");
 	return 0;
 }
